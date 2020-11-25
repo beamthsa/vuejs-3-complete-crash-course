@@ -23,8 +23,7 @@ export default {
   },
 
   async created() {
-    const starters = await this.fetchData(STARTER_IDS)
-    this.starters = starters
+    this.starters = await this.fetchData(STARTER_IDS)
   },
 
   data() {

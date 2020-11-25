@@ -1,18 +1,19 @@
 <template>
-  <div>
-    <div class="like">
-      <button @click="like">
-        ❤️
-      </button>
-      <div>
-        {{ post.likes }}
-      </div>
+    <div>
+        <div class="like">
+            <button @click="like">
+                ❤️
+            </button>
+            <div>
+                {{ post.likes }}
+            </div>
+        </div>
+        <hashtag
+            v-for="tag in post.hashtags" 
+            :hashtag="tag"
+            :key="tag"
+        />
     </div>
-    <hashtag 
-      v-for="tag in post.hashtags" 
-      :hashtag="tag"
-    />
-  </div>
 </template>
 
 <script>
@@ -20,23 +21,23 @@ import Hashtag from './Hashtag.vue'
 import { store } from './store'
 
 export default {
-  components: { Hashtag },
+    components: {
+        Hashtag
+    },
 
-  props: {
-    post: {
-      type: Object
-    }
-  },
+    props: {
+        post: {
+            type: Object
+        }
+    },
 
-  setup(props) {
-    const like = () => {
-      store.incrementLike(props.post)
-    }
+    setup(props) {
+        const like = () => store.incrementLike(props.post)
 
-    return {
-      like
+        return {
+            like
+        }
     }
-  }
 }
 </script>
 

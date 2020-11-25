@@ -1,27 +1,25 @@
 <template>
-  <div class="hashtag" @click="setHashtag">
-    #{{ hashtag }}
-  </div>
+    <div class="hashtag" @click="setHashtag">
+        #{{ hashtag }}
+    </div>
 </template>
 
 <script>
 import { store } from './store'
 export default {
-  props: {
-    hashtag: {
-      type: String
-    }
-  },
+    props: {
+        hashtag: {
+            type: String
+        }
+    },
 
-  setup(props, ctx) {
-    const setHashtag = () => {
-      store.setHashtag(props.hashtag)
-    }
+    setup(props, ctx) {
+        const setHashtag = () => store.setHashtag(props.hashtag)
 
-    return {
-      setHashtag
+        return {
+            setHashtag
+        }
     }
-  }
 }
 </script>
 

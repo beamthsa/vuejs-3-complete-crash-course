@@ -1,25 +1,24 @@
 <template>
-  <label for="search">Search Hashtag: #</label>
-  <input id="search" type="text" :value="currentHashtag" @input="setHashtag" />
-  <div class="cards">
-    <card 
-      v-for="post in filteredPosts"
-    >
-      <template v-slot:title>
-        {{ post.title }}
-      </template>
+    <label for="search">Search Hashtag: #</label>
+    <input id="search" type="text" :value="currentHashtag" @input="setHashtag" />
+    <div class="cards">
+        <card 
+            v-for="post in filteredPosts"
+            :key="post.title"
+        >
+        <template v-slot:title>
+            {{ post.title }}
+        </template>
 
-      <template v-slot:content>
-        {{ post.content }}
-      </template>
+        <template v-slot:content>
+            {{ post.content }}
+        </template>
 
-      <template v-slot:description>
-        <controls 
-          :post="post" 
-        />
-      </template>
-    </card>
-  </div>
+        <template v-slot:description>
+            <controls :post="post"/>
+        </template>
+        </card>
+    </div>
 </template>
 
 <script>
@@ -29,22 +28,22 @@ import Card from '../pokemon/Card.vue'
 import Controls from './Controls.vue'
 
 export default {
-  components: {
-    Card,
-    Controls
-  },
+    components: {
+        Card,
+        Controls
+    },
 
-  setup() {
-    const setHashtag = (evt) => {
-      store.setHashtag(evt.target.value)
-    }
+    setup() {
+        const setHashtag = (evt) => {
+            store.setHashtag(evt.target.value)
+        }
 
-    return {
-      filteredPosts: store.filteredPosts,
-      setHashtag,
-      currentHashtag: computed(() => store.state.currentHashtag)
+        return {
+            filteredPosts: store.filteredPosts,
+            setHashtag,
+            currentHashtag: computed(() => store.state.currentHashtag)
+        }
     }
-  }
 }
 </script>
 

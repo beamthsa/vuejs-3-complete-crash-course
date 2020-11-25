@@ -1,5 +1,5 @@
 <template>
-  Hello, this is a route
+    Hello, this is a route
 </template>
 
 <script>

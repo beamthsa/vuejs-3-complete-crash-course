@@ -3,8 +3,8 @@
     <card 
       v-for="pokemon in pokemons" 
       @click="click(pokemon)"
+      :key="pokemon.id"
       :class="{ opace: selectedId && pokemon.id !== selectedId }"
-      class="card"
     >
       <template v-slot:title>
         {{ pokemon.name }} #{{ pokemon.id }}
@@ -15,7 +15,10 @@
       </template>
 
       <template v-slot:description>
-        <div v-for="type in pokemon.types">
+        <div
+            v-for="type in pokemon.types"
+            :key="type"
+        >
           {{ type }}
         </div>
       </template>
@@ -27,25 +30,25 @@
 import Card from './Card.vue'
 
 export default {
-  components: {
-    Card
-  },
-
-  props: {
-    selectedId: {
-      type: Number
+    components: {
+        Card
     },
 
-    pokemons: {
-      type: Array
-    }
-  },
+    props: {
+        selectedId: {
+        type: Number
+        },
 
-  methods: {
-    click(pokemon) {
-      this.$emit('pokemonClicked', pokemon)
+        pokemons: {
+        type: Array
+        }
+    },
+
+    methods: {
+        click(pokemon) {
+        this.$emit('pokemonClicked', pokemon)
+        }
     }
-  }
 }
 </script>
 
